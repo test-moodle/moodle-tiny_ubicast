@@ -1,0 +1,87 @@
+{{!
+    This file is part of Moodle - http://moodle.org/
+
+    Moodle is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    Moodle is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
+}}
+{{!
+    @template tiny_ubicast/modal
+
+    Modal to manage a media within the Tiny Editor.
+
+    Classes required for JS:
+    * none
+
+    Data attributes required for JS:
+    * none
+
+    Context variables required for this template:
+
+    Example context (json):
+    {
+        "elementid": "exampleId",
+        "mediaimg": "https://moodle.org/image.jpg",
+        "mediaid": "v1268c0e52b4fykoyjyr",
+        "mediawidth": "100%",
+        "mediaheight": "300px"
+    }
+}}
+{{< core/modal }}
+
+    {{$title}}
+        {{#str}} tooltip, tiny_ubicast {{/str}}
+    {{/title}}
+
+    {{$body}}
+        <div id="{{elementid}}_tiny_ubicast_dialog">
+            <form class="mform" id="{{uniqid}}">
+                <div class="mb-1">
+                    <label>{{#str}} mediapick, tiny_ubicast {{/str}}</label>
+                    <iframe class="ubicast-iframe" style="margin: 0; width: 100%; height: 360px;" src="" frameborder="0"></iframe>
+                    <input
+                        class="form-control tiny_ubicast_mediaimg"
+                        id="{{elementid}}_tiny_ubicast_mediaimg" name="mediaimg" type="hidden" value="{{mediaimg}}"/>
+                </div>
+                <div class="mb-1">
+                    <label for="{{elementid}}_tiny_ubicast_mediaid">{{#str}} mediaid, tiny_ubicast {{/str}}</label>
+                    <input class="form-control w-100 tiny_ubicast_mediaid" id="{{elementid}}_tiny_ubicast_mediaid"
+                           name="mediaid" type="text" value="{{mediaid}}" spellcheck="false"
+                           onchange="javascript: this.value = ((new RegExp('(?:^|/)([cvlp][a-z0-9]{19})($:^|/)').exec(this.value)) || [null, this.value])[1]"/>
+                </div>
+                <div class="mb-1">
+                    <label>{{#str}} mediasize, tiny_ubicast {{/str}}</label>
+                    <div class="d-flex flex-wrap align-items-center tiny_ubicast_poster_size">
+                        <label for="{{elementid}}_tiny_ubicast_mediawidth" class="accesshide">{{#str}} mediawidth, tiny_ubicast {{/str}}</label>
+                        <input id="{{elementid}}_tiny_ubicast_mediawidth" class="form-control w-auto me-1 tiny_ubicast_mediawidth input-mini"
+                               name="mediawidth" type="text" maxlength="10" size="10" spellcheck="false" value="{{mediawidth}}"/>
+                        x
+                        <label for="{{elementid}}_tiny_ubicast_mediaheight" class="accesshide">{{#str}} mediaheight, tiny_ubicast {{/str}}</label>
+                        <input id="{{elementid}}_tiny_ubicast_mediaheight" class="form-control w-auto ms-1 tiny_ubicast_mediaheight input-mini"
+                               name="mediaheight" type="text" maxlength="10" size="10" spellcheck="false" value="{{mediaheight}}"/>
+                    </div>
+                </div>
+                <button class="tiny_ubicast_submit" type="submit" style="display: none;">OK</button>
+            </form>
+        </div>
+    {{/body}}
+
+    {{$footer}}
+        <button type="button" class="btn btn-secondary tiny_ubicast_close" data-action="cancel">
+            {{#str}} dialogclose, tiny_ubicast {{/str}}
+        </button>
+        <button type="button" class="btn btn-primary tiny_ubicast_insert" data-action="insert">
+            {{#str}} dialogconfirm, tiny_ubicast {{/str}}
+        </button>
+    {{/footer}}
+
+{{/ core/modal }}
