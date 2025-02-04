@@ -1,10 +1,10 @@
 # moodle-tiny_ubicast
 
-Moodle plugin for inserting Nudgis content into HTML text areas
+Moodle plugin for inserting Nudgis content into HTML text areas using the TinyMCE text editor.
 
 ## Requirements
 
-* Moodle 4.4+
+* Moodle 4.2+
 * mod_ubicast (mandatory): https://github.com/UbiCastTeam/moodle-mod_ubicast
 * filter_ubicast (optional, to allow students to insert video content in assignments or forums): https://github.com/UbiCastTeam/moodle-filter_ubicast
 
